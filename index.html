@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trains Vichy / St Germain des Foss&eacute;s</title>
+    <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
@@ -262,6 +263,16 @@
         } else {
             initTransit();
         }
+
+	// Register the service worker to make Chrome happy for installation
+	if ('serviceWorker' in navigator) {
+    	window.addEventListener('load', () => {
+        	navigator.serviceWorker.register('./sw.js')
+            	.then(reg => console.log('Service Worker registered'))
+            	.catch(err => console.log('Service Worker failed', err));
+    });
+}
+
     </script>
 </body>
 </html>
