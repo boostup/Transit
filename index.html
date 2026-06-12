@@ -215,7 +215,10 @@
                 return;
             }
 
-            filteredTrains.slice(0, 3).forEach(train => {
+	    // This creates a clean list with all TGVs completely removed
+	    const regionalTrainsOnly = filteredTrains.filter(train => train.type !== "TGV");
+
+            regionalTrainsOnly.slice(0, 3).forEach(train => {
                 const timeStr = train.stop_date_time.departure_date_time;
                 const horaire = `${timeStr.substring(9, 11)}:${timeStr.substring(11, 13)}`;
                 
